@@ -17,70 +17,90 @@
         <p class="subtitle">A turkey's debut on pointe</p>
     </header>
 
-    <main class="stage">
+    <main class="stage" id="ballet-stage">
 
+        <!-- Ballet theater stage -->
         <div class="curtain left-curtain"></div>
         <div class="curtain right-curtain"></div>
         <div class="spotlight"></div>
         <div class="floor"></div>
 
+        <!-- Animated stage sparkles -->
         <div class="sparkle sparkle-one">✧</div>
         <div class="sparkle sparkle-two">✦</div>
         <div class="sparkle sparkle-three">✧</div>
         <div class="sparkle sparkle-four">✦</div>
 
-        <div class="turkey">
+        <!-- Floating musical notes -->
+        <div class="music-note note-one">♪</div>
+        <div class="music-note note-two">♫</div>
+        <div class="music-note note-three">♩</div>
+        <div class="music-note note-four">♪</div>
 
-            <!-- Original turkey feathers -->
-            <div class="tail"></div>
-            <div class="tail"></div>
-            <div class="tail"></div>
-            <div class="tail"></div>
-            <div class="tail"></div>
-            <div class="tail"></div>
-            <div class="tail"></div>
-            <div class="tail"></div>
-            <div class="tail"></div>
-            <div class="tail"></div>
-            <div class="tail"></div>
+        <div class="performance-label">
+            ✧ The Sugar Plum Performance ✧
+        </div>
 
-            <!-- Original turkey body parts -->
-            <div class="leg"></div>
-            <div class="leg"></div>
+        <!-- Stable hover area -->
+        <div class="dance-zone">
 
-            <div class="body"></div>
+            <div class="turkey">
 
-            <div class="wing"></div>
-            <div class="wing"></div>
+                <!-- Original turkey feathers -->
+                <div class="tail"></div>
+                <div class="tail"></div>
+                <div class="tail"></div>
+                <div class="tail"></div>
+                <div class="tail"></div>
+                <div class="tail"></div>
+                <div class="tail"></div>
+                <div class="tail"></div>
+                <div class="tail"></div>
+                <div class="tail"></div>
+                <div class="tail"></div>
 
-            <!-- Ballerina costume -->
-            <div class="leotard"></div>
-            <div class="tutu-back"></div>
-            <div class="tutu-front"></div>
-            <div class="waistband"></div>
+                <!-- Original turkey body parts -->
+                <div class="leg"></div>
+                <div class="leg"></div>
+                <div class="body"></div>
 
-            <div class="bow">
-                <div class="bow-left"></div>
-                <div class="bow-right"></div>
-                <div class="bow-center"></div>
+                <!-- Symmetrical ballet wings -->
+                <div class="wing wing-left"></div>
+                <div class="wing wing-right"></div>
+
+                <!-- Ballerina costume -->
+                <div class="leotard"></div>
+                <div class="tutu-back"></div>
+                <div class="tutu-front"></div>
+                <div class="waistband"></div>
+
+                <!-- Decorative ballet bow -->
+                <div class="bow">
+                    <div class="bow-left"></div>
+                    <div class="bow-right"></div>
+                    <div class="bow-center"></div>
+                </div>
+
+                <!-- Turkey head and facial features -->
+                <div class="head">
+                    <div class="eye eye-left"></div>
+                    <div class="eye eye-right"></div>
+                    <div class="blush blush-left"></div>
+                    <div class="blush blush-right"></div>
+                    <div class="beak"></div>
+                    <div class="red"></div>
+                </div>
+
+                <!-- Original hat redesigned as tiara -->
+                <div class="hat-top"></div>
+                <div class="hat-bottom"></div>
+                <div class="gem"></div>
+
+                <!-- Ballet pointe shoes -->
+                <div class="slipper slipper-left"></div>
+                <div class="slipper slipper-right"></div>
+
             </div>
-
-            <!-- Turkey face -->
-            <div class="head">
-                <div class="eye"></div>
-                <div class="beak"></div>
-                <div class="red"></div>
-                <div class="blush"></div>
-            </div>
-
-            <!-- Original hat redesigned as tiara -->
-            <div class="hat-top"></div>
-            <div class="hat-bottom"></div>
-            <div class="gem"></div>
-
-            <!-- Ballet slippers -->
-            <div class="slipper slipper-left"></div>
-            <div class="slipper slipper-right"></div>
 
         </div>
 
@@ -88,8 +108,97 @@
 
     <footer>
         <p>ACT I &nbsp; · &nbsp; THE LAST DANCE BEFORE DINNER</p>
-        <span>Hover over the turkey for a little magic ✧</span>
+
+        <span id="performance-status">
+            Hover over the turkey or play the soundtrack for a little magic ✧
+        </span>
+
+        <!-- Soundtrack attribution -->
+        <p class="music-credit">
+            Music: Dance of the Sugar Plum Fairy —
+            <a href="https://commons.wikimedia.org/wiki/File:Tchaikovsky_-_Dance_of_the_Sugar_Plum_Fairy_-_The_Nutcracker.ogg"
+                target="_blank" rel="noopener">
+                Pyotr Ilyich Tchaikovsky
+            </a>
+            ·
+            <a href="https://creativecommons.org/licenses/by/3.0"
+                target="_blank" rel="noopener">
+                CC BY 3.0
+            </a>
+            · Wikimedia Commons
+        </p>
     </footer>
+
+    <!-- Background music -->
+    <audio id="ballet-music" loop preload="auto"
+        src="https://upload.wikimedia.org/wikipedia/commons/9/9d/Tchaikovsky_-_Dance_of_the_Sugar_Plum_Fairy_-_The_Nutcracker.ogg">
+    </audio>
+
+    <!-- Floating music button -->
+    <button id="music-button" type="button" aria-pressed="false">
+        ♫ Play Soundtrack
+    </button>
+
+    <script>
+        const music = document.getElementById("ballet-music");
+        const button = document.getElementById("music-button");
+        const stage = document.getElementById("ballet-stage");
+        const performanceStatus = document.getElementById("performance-status");
+
+        // Music settings
+        music.volume = 0.35;
+        music.loop = true;
+
+        // Synchronize the music, button and animation
+        function updatePerformance() {
+            const playing = !music.paused && !music.ended;
+
+            stage.classList.toggle("performing", playing);
+            button.classList.toggle("playing", playing);
+
+            button.setAttribute("aria-pressed", String(playing));
+
+            button.textContent = playing
+                ? "Ⅱ Pause Soundtrack"
+                : "♫ Play Soundtrack";
+
+            performanceStatus.textContent = playing
+                ? "Now performing: The Dance of the Sugar Plum Turkey ✧"
+                : "Hover over the turkey or play the soundtrack for a little magic ✧";
+        }
+
+        // Play and pause music
+        button.addEventListener("click", async function () {
+            if (!music.paused) {
+                music.pause();
+            } else {
+                try {
+                    await music.play();
+                } catch (error) {
+                    console.error("Music error:", error);
+                    updatePerformance();
+                    button.textContent = "♫ Retry Soundtrack";
+                }
+            }
+        });
+
+        // Respond to audio playback changes
+        music.addEventListener("play", updatePerformance);
+        music.addEventListener("playing", updatePerformance);
+        music.addEventListener("pause", updatePerformance);
+        music.addEventListener("ended", updatePerformance);
+
+        // Handle audio errors
+        music.addEventListener("error", function () {
+            stage.classList.remove("performing");
+            button.classList.remove("playing");
+            button.setAttribute("aria-pressed", "false");
+            button.textContent = "♫ Audio Unavailable";
+        });
+
+        // Set initial state
+        updatePerformance();
+    </script>
 
 </body>
 

@@ -20,7 +20,7 @@ body {
     text-align: center;
 }
 
-/* STEP 1: Website decorations */
+/* STEP 1: Website heading */
 
 header {
     padding: 22px 15px 12px;
@@ -62,6 +62,7 @@ h1 {
         #fffaf2,
         #f4d0da 75%
     );
+    transition: box-shadow 1s;
 }
 
 .floor {
@@ -89,9 +90,10 @@ h1 {
         100% 100%,
         0 100%
     );
+    transition: opacity 1s, filter 1s;
 }
 
-/* Theater curtains */
+/* STEP 3: Theater curtains */
 
 .curtain {
     position: absolute;
@@ -106,6 +108,7 @@ h1 {
     );
     z-index: 5;
     border-bottom: 5px solid #dbb57e;
+    transition: transform 1.2s ease;
 }
 
 .left-curtain {
@@ -118,22 +121,31 @@ h1 {
     border-radius: 0 0 0 90%;
 }
 
-/* STEP 3: Original turkey container */
+/* STEP 4: Stable hover area */
+
+.dance-zone {
+    position: absolute;
+    inset: 0;
+    width: 65%;
+    margin: auto;
+    z-index: 3;
+}
+
+/* STEP 5: Original turkey container */
 
 .turkey {
     --brown1: #c39479;
     --brown2: #dbb69d;
     --orange1: #eeb16b;
     --orange2: #d69055;
-
     --pink1: #f6c6d5;
     --pink2: #df8daa;
     --pink3: #b85c7b;
     --cream: #fff0df;
     --gold: #e1b76c;
 
-    width: 58vmin;
-    height: 58vmin;
+    width: min(58vmin, 510px);
+    height: min(58vmin, 510px);
     position: absolute;
     top: 49%;
     left: 50%;
@@ -146,7 +158,7 @@ h1 {
     box-sizing: border-box;
 }
 
-/* STEP 4: Redesigned pastel feathers */
+/* STEP 6: Symmetrical pastel feathers */
 
 .tail {
     width: 15%;
@@ -176,17 +188,49 @@ h1 {
     border-radius: 50%;
 }
 
-.tail:nth-child(1)  { --angle: -75deg; }
-.tail:nth-child(2)  { --angle: -60deg; }
-.tail:nth-child(3)  { --angle: -45deg; }
-.tail:nth-child(4)  { --angle: -30deg; }
-.tail:nth-child(5)  { --angle: -15deg; }
-.tail:nth-child(6)  { --angle: 0deg; }
-.tail:nth-child(7)  { --angle: 15deg; }
-.tail:nth-child(8)  { --angle: 30deg; }
-.tail:nth-child(9)  { --angle: 45deg; }
-.tail:nth-child(10) { --angle: 60deg; }
-.tail:nth-child(11) { --angle: 75deg; }
+.tail:nth-child(1) {
+    --angle: -75deg;
+}
+
+.tail:nth-child(2) {
+    --angle: -60deg;
+}
+
+.tail:nth-child(3) {
+    --angle: -45deg;
+}
+
+.tail:nth-child(4) {
+    --angle: -30deg;
+}
+
+.tail:nth-child(5) {
+    --angle: -15deg;
+}
+
+.tail:nth-child(6) {
+    --angle: 0deg;
+}
+
+.tail:nth-child(7) {
+    --angle: 15deg;
+}
+
+.tail:nth-child(8) {
+    --angle: 30deg;
+}
+
+.tail:nth-child(9) {
+    --angle: 45deg;
+}
+
+.tail:nth-child(10) {
+    --angle: 60deg;
+}
+
+.tail:nth-child(11) {
+    --angle: 75deg;
+}
 
 .tail:nth-child(even) {
     background: linear-gradient(
@@ -195,61 +239,78 @@ h1 {
     );
 }
 
-/* STEP 5: Original body recolored and resized */
+/* Mirrored feather animations */
+
+.tail:nth-child(-n+5) {
+    animation-name: feather-left;
+}
+
+.tail:nth-child(n+7):nth-child(-n+11) {
+    animation-name: feather-right;
+}
+
+.tail:nth-child(6) {
+    animation: none;
+}
+
+/* STEP 7: Original body recolored */
 
 .body {
     width: 36%;
     height: 38%;
-    background: var(--brown1);
+    background: #eaa0bd;
     border-radius: 48%;
     top: 40%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
-    box-shadow: inset -8px -5px 0 #00000008;
 }
 
-/* STEP 6: Wings reshaped into ballet arms */
+/* STEP 8: Symmetrical ballet wings */
 
 .wing {
+    position: absolute;
     background: var(--brown2);
     height: 13%;
     width: 28%;
-    border-radius: 80% 30% 50% 70%;
-    transform-origin: right center;
+    border: 1px solid #bb927d;
     top: 43%;
-    left: 11%;
-    transform: rotate(18deg);
+    transform-origin: center center;
     z-index: 4;
-    border-bottom: 2px solid #bb927d;
 }
 
-.wing + .wing {
-    left: auto;
+.wing-left {
+    left: 11%;
+    right: auto;
+    border-radius: 80% 30% 50% 70%;
+    transform: rotate(18deg);
+}
+
+.wing-right {
     right: 11%;
-    transform-origin: left center;
-    transform: scaleY(-1) rotate(18deg);
+    left: auto;
+    border-radius: 30% 80% 70% 50%;
+    transform: rotate(-18deg);
 }
 
-/* STEP 7: Original turkey legs */
+/* STEP 9: Matching turkey legs */
 
 .leg {
     width: 4.5%;
     height: 19%;
-    top: 70%;
+    top: 73%;
     left: 43%;
-    background: var(--orange1);
+    background: var(--brown2);
     border-radius: 30px;
-    transform: rotate(8deg);
     z-index: 2;
 }
 
 .leg + .leg {
-    left: 53%;
-    transform: rotate(-8deg);
+    left: auto;
+    right: 43%;
 }
 
-/* STEP 8: Turkey head and neck */
+/* STEP 10: Turkey head and neck */
 
 .head {
     width: 21%;
@@ -259,52 +320,60 @@ h1 {
     top: 18%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 8;
+    z-index: 4;
 }
 
 .head::before {
     content: "";
     position: absolute;
-    width: 40%;
-    height: 115%;
+    width: 38%;
+    height: 85%;
     background: var(--brown2);
-    top: 70%;
+    top: 75%;
     left: 50%;
     transform: translateX(-50%);
-    border-radius: 0 0 100% 100%;
+    border-radius: 0 0 45% 45%;
 }
 
-/* STEP 9: Facial features */
+/* STEP 11: Matching eyes */
 
 .eye {
     width: 10%;
     height: 12%;
     background: #422b32;
-    color: #422b32;
     border-radius: 50%;
     top: 39%;
-    left: 25%;
-    box-shadow: 5.5vmin 0;
     z-index: 2;
 }
 
-.eye::before {
+.eye-left {
+    left: 24%;
+}
+
+.eye-right {
+    right: 24%;
+}
+
+.eye::after {
     content: "";
     position: absolute;
-    width: 35%;
-    height: 35%;
+    width: 32%;
+    height: 32%;
     background: white;
     border-radius: 50%;
     top: 15%;
-    left: 15%;
+    left: 18%;
 }
+
+/* STEP 12: Facial features */
 
 .beak {
     width: 27%;
     height: 20%;
     background: var(--orange1);
     top: 52%;
-    left: 37%;
+    left: 50%;
+    transform: translateX(-50%);
     clip-path: polygon(
         0 0,
         100% 0,
@@ -321,102 +390,129 @@ h1 {
     top: 58%;
     left: 58%;
     transform: rotate(-18deg);
+    z-index: 2;
 }
 
 .blush {
-    width: 18%;
+    width: 17%;
     height: 9%;
     background: #e998a5;
     border-radius: 50%;
     top: 57%;
-    left: 10%;
-    box-shadow: 7.5vmin 0 #e998a5;
     opacity: 0.8;
 }
 
-/* STEP 10: NEW ACCESSORY - Ballet leotard */
+.blush-left {
+    left: 10%;
+}
+
+.blush-right {
+    right: 10%;
+}
+
+/* STEP 13: NEW ACCESSORY - Ballet dress */
 
 .leotard {
-    width: 34%;
-    height: 29%;
+    width: 36%;
+    height: 38%;
+    top: 40%;
+    left: 32%;
     background: linear-gradient(
-        #ffdce8,
-        #eea1bd
+        90deg,
+        #eaa0bd,
+        #ffdfeb 50%,
+        #eaa0bd
     );
-    top: 45%;
-    left: 33%;
-    border-radius: 15% 15% 45% 45%;
+    border-radius: 48%;
     clip-path: polygon(
         0 0,
-        25% 0,
-        50% 25%,
-        75% 0,
+        32% 0,
+        50% 22%,
+        68% 0,
         100% 0,
-        90% 100%,
-        10% 100%
+        100% 100%,
+        0 100%
     );
+    box-shadow: inset 0 0 12px #d88eab30;
     z-index: 5;
 }
 
-/* STEP 11: NEW ACCESSORY - Layered tutu */
+/* Decorative dress seams */
+
+.leotard::before,
+.leotard::after {
+    content: "";
+    position: absolute;
+    width: 2%;
+    height: 70%;
+    background: #ffffff60;
+    top: 15%;
+    border-radius: 50%;
+}
+
+.leotard::before {
+    left: 25%;
+    transform: rotate(-8deg);
+}
+
+.leotard::after {
+    right: 25%;
+    transform: rotate(8deg);
+}
+
+/* STEP 14: NEW ACCESSORY - Layered tutu */
 
 .tutu-back {
-    width: 58%;
-    height: 18%;
-    top: 60%;
-    left: 21%;
-    background: #dc87a7;
-    border-radius: 20% 20% 50% 50%;
+    width: 64%;
+    height: 21%;
+    top: 59%;
+    left: 18%;
+    background: #d98aa9;
+    border-radius: 20% 20% 45% 45%;
     clip-path: polygon(
         28% 0,
         72% 0,
         100% 80%,
-        90% 95%,
-        75% 85%,
-        60% 100%,
-        45% 90%,
-        30% 100%,
-        15% 85%,
+        85% 100%,
+        15% 100%,
         0 80%
     );
     z-index: 6;
 }
 
 .tutu-front {
-    width: 57%;
-    height: 15%;
-    top: 59%;
-    left: 21.5%;
+    width: 62%;
+    height: 18%;
+    top: 58%;
+    left: 19%;
     background: repeating-conic-gradient(
-        from 0deg at 50% -30%,
-        #ffd5e5 0deg 8deg,
-        #f0afc9 8deg 12deg
+        from 0deg at 50% 0%,
+        #ffdfeb 0deg 6deg,
+        #f6c5d8 6deg 12deg
     );
+    border-radius: 20% 20% 45% 45%;
     clip-path: polygon(
         28% 0,
         72% 0,
-        100% 85%,
-        85% 95%,
-        70% 85%,
-        50% 100%,
-        30% 85%,
-        15% 95%,
-        0 85%
+        100% 80%,
+        85% 100%,
+        15% 100%,
+        0 80%
     );
     z-index: 7;
 }
 
 .waistband {
-    width: 27%;
+    width: 29%;
     height: 3%;
     top: 58%;
-    left: 36.5%;
+    left: 35.5%;
     background: var(--pink3);
     border-radius: 20px;
     z-index: 8;
 }
 
-/* STEP 12: NEW ACCESSORY - Waist bow */
+/* STEP 15: NEW ACCESSORY - Ballet bow */
 
 .bow {
     width: 15%;
@@ -455,7 +551,7 @@ h1 {
     border-radius: 30%;
 }
 
-/* STEP 13: Original hat reshaped into a tiara */
+/* STEP 16: Original hat redesigned as tiara */
 
 .hat-top {
     width: 19%;
@@ -500,54 +596,66 @@ h1 {
     z-index: 11;
 }
 
-/* STEP 14: NEW ACCESSORY - Ballet slippers */
+/* STEP 17: NEW ACCESSORY - Satin pointe shoes */
 
 .slipper {
-    width: 6%;
-    height: 10%;
-    top: 82%;
+    width: 5.8%;
+    height: 8.5%;
+    top: 85%;
     background: linear-gradient(
-        #edafc7,
-        #c57292
+        90deg,
+        #ce829e,
+        #f8d3e2 45%,
+        #e5a0bb 75%,
+        #ce829e
     );
-    border-radius: 30% 30% 45% 45%;
-    border-bottom: 3px solid #a95576;
+    border: 1px solid #b97590;
+    border-bottom: 3px solid #b97590;
+    border-radius: 45% 45% 25% 25%;
+    box-shadow:
+        inset 0 -5px 0 #c17b9825,
+        0 2px 3px #74394d20;
+    outline: 1px dashed #fff0f5;
+    outline-offset: -4px;
     z-index: 5;
 }
 
 .slipper-left {
-    left: 41%;
-    transform: rotate(8deg);
+    left: 42.35%;
 }
 
 .slipper-right {
-    left: 53%;
-    transform: rotate(-8deg);
+    right: 42.35%;
 }
 
-/* Crisscross ballet ribbons */
+/* Thin crisscross satin ribbons */
 
 .slipper::before,
 .slipper::after {
     content: "";
     position: absolute;
-    width: 28%;
-    height: 100%;
-    background: #d98da9;
-    top: -75%;
-    left: 36%;
-    border-radius: 4px;
+    width: 17%;
+    height: 125%;
+    top: -105%;
+    left: 41.5%;
+    background: linear-gradient(
+        90deg,
+        #c77b99,
+        #f4bfd4
+    );
+    border: 1px solid #c78ba3;
+    border-radius: 2px;
 }
 
 .slipper::before {
-    transform: rotate(35deg);
+    transform: rotate(30deg);
 }
 
 .slipper::after {
-    transform: rotate(-35deg);
+    transform: rotate(-30deg);
 }
 
-/* STEP 15: Animated sparkles */
+/* STEP 18: Animated stage sparkles */
 
 .sparkle {
     position: absolute;
@@ -558,12 +666,12 @@ h1 {
 }
 
 .sparkle-one {
-    top: 25%;
+    top: 20%;
     left: 25%;
 }
 
 .sparkle-two {
-    top: 16%;
+    top: 20%;
     right: 25%;
     animation-delay: 0.5s;
 }
@@ -575,12 +683,12 @@ h1 {
 }
 
 .sparkle-four {
-    bottom: 24%;
+    bottom: 23%;
     right: 20%;
     animation-delay: 1.5s;
 }
 
-/* STEP 16: Animations and hover effects */
+/* STEP 19: Original animations */
 
 @keyframes twinkle {
     0%, 100% {
@@ -600,21 +708,404 @@ h1 {
     }
 
     50% {
+        transform: rotate(var(--angle));
+    }
+}
+
+@keyframes feather-left {
+    0%, 100% {
+        transform: rotate(var(--angle));
+    }
+
+    50% {
+        transform: rotate(
+            calc(var(--angle) - 3deg)
+        );
+    }
+}
+
+@keyframes feather-right {
+    0%, 100% {
+        transform: rotate(var(--angle));
+    }
+
+    50% {
         transform: rotate(
             calc(var(--angle) + 3deg)
         );
     }
 }
 
-.turkey:hover {
-    transform: translate(-50%, -50%) scale(1.06);
+/* ==================================
+   LIVE BALLET PERFORMANCE
+================================== */
+
+/* STEP 20: Ballerina choreography */
+
+.stage.performing .turkey,
+.dance-zone:hover .turkey {
+    animation: ballet-dance 6s ease-in-out infinite;
 }
 
-.turkey:hover .tutu-front {
-    filter: brightness(1.12);
+@keyframes ballet-dance {
+    0%, 100% {
+        transform: translate(-50%, -50%)
+            rotateZ(0deg) rotateY(0deg);
+    }
+
+    10% {
+        transform: translate(-55%, -52%)
+            rotateZ(-8deg) rotateY(0deg);
+    }
+
+    20% {
+        transform: translate(-50%, -57%)
+            rotateZ(0deg) rotateY(0deg);
+    }
+
+    30% {
+        transform: translate(-45%, -52%)
+            rotateZ(8deg) rotateY(0deg);
+    }
+
+    40% {
+        transform: translate(-50%, -50%)
+            rotateZ(0deg) rotateY(0deg);
+    }
+
+    50% {
+        transform: translate(-50%, -55%)
+            rotateZ(-8deg) rotateY(0deg);
+    }
+
+    60% {
+        transform: translate(-50%, -58%)
+            rotateZ(0deg) rotateY(180deg);
+    }
+
+    70% {
+        transform: translate(-50%, -55%)
+            rotateZ(0deg) rotateY(360deg);
+    }
+
+    80% {
+        transform: translate(-50%, -50%)
+            rotateZ(0deg) rotateY(360deg);
+    }
+
+    90% {
+        transform: translate(-50%, -52%)
+            rotateZ(5deg) rotateY(360deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%)
+            rotateZ(0deg) rotateY(360deg);
+    }
 }
 
-/* STEP 17: Footer */
+/* STEP 21: Moving ballet wings */
+
+.stage.performing .wing-left,
+.dance-zone:hover .wing-left {
+    animation: ballet-wing-left 2s ease-in-out infinite;
+}
+
+.stage.performing .wing-right,
+.dance-zone:hover .wing-right {
+    animation: ballet-wing-right 2s ease-in-out infinite;
+}
+
+@keyframes ballet-wing-left {
+    0%, 100% {
+        transform: rotate(18deg);
+    }
+
+    50% {
+        transform: rotate(35deg);
+    }
+}
+
+@keyframes ballet-wing-right {
+    0%, 100% {
+        transform: rotate(-18deg);
+    }
+
+    50% {
+        transform: rotate(-35deg);
+    }
+}
+
+/* STEP 22: Fluttering tutu */
+
+.stage.performing .tutu-front,
+.stage.performing .tutu-back,
+.dance-zone:hover .tutu-front,
+.dance-zone:hover .tutu-back {
+    animation: tutu-flutter 1.5s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+@keyframes tutu-flutter {
+    0%, 100% {
+        transform: scaleX(1) rotate(0deg);
+    }
+
+    25% {
+        transform: scaleX(1.08) rotate(-3deg);
+    }
+
+    75% {
+        transform: scaleX(1.08) rotate(3deg);
+    }
+}
+
+/* STEP 23: Sparkling tiara */
+
+.stage.performing .gem,
+.dance-zone:hover .gem {
+    animation: tiara-shine 1.5s ease-in-out infinite;
+}
+
+@keyframes tiara-shine {
+    0%, 100% {
+        filter: brightness(1);
+        box-shadow: 0 0 3px #fff1ca;
+    }
+
+    50% {
+        filter: brightness(1.5);
+        box-shadow: 0 0 15px #fff1ca;
+    }
+}
+
+/* STEP 24: Glowing theater spotlight */
+
+.stage.performing .spotlight,
+.stage:has(.dance-zone:hover) .spotlight {
+    background: linear-gradient(
+        #fff6bd90,
+        #ffffffb0,
+        #ffe4bd20
+    );
+    animation: spotlight-glow 3s ease-in-out infinite;
+}
+
+@keyframes spotlight-glow {
+    0%, 100% {
+        opacity: 0.65;
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(1.3);
+    }
+}
+
+/* STEP 25: Opening theater curtains */
+
+.stage.performing .left-curtain,
+.stage:has(.dance-zone:hover) .left-curtain {
+    transform: translateX(-20%);
+}
+
+.stage.performing .right-curtain,
+.stage:has(.dance-zone:hover) .right-curtain {
+    transform: translateX(20%);
+}
+
+/* STEP 26: Floating musical notes */
+
+.music-note {
+    position: absolute;
+    font-size: clamp(20px, 4vw, 38px);
+    color: #bd8e4e;
+    opacity: 0;
+    z-index: 4;
+    pointer-events: none;
+    text-shadow: 0 0 12px #fff2c4;
+}
+
+.note-one {
+    left: 24%;
+    bottom: 25%;
+    --delay: 0s;
+}
+
+.note-two {
+    right: 24%;
+    bottom: 30%;
+    --delay: 1s;
+}
+
+.note-three {
+    left: 32%;
+    bottom: 20%;
+    --delay: 2s;
+}
+
+.note-four {
+    right: 32%;
+    bottom: 20%;
+    --delay: 3s;
+}
+
+.stage.performing .music-note,
+.stage:has(.dance-zone:hover) .music-note {
+    animation: floating-note 4s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes floating-note {
+    0% {
+        opacity: 0;
+        transform: translateY(0)
+            rotate(-15deg) scale(0.6);
+    }
+
+    25% {
+        opacity: 0.9;
+    }
+
+    75% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-150px)
+            rotate(15deg) scale(1.2);
+    }
+}
+
+/* STEP 27: Magical stage sparkles */
+
+.stage.performing .sparkle,
+.stage:has(.dance-zone:hover) .sparkle {
+    color: #d6a34d;
+    text-shadow:
+        0 0 8px #fff4bf,
+        0 0 18px #ffe5a0;
+    animation: magical-sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes magical-sparkle {
+    0%, 100% {
+        opacity: 0.4;
+        transform: scale(0.7) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.5) rotate(45deg);
+    }
+}
+
+/* STEP 28: Performance announcement */
+
+.performance-label {
+    position: absolute;
+    bottom: 4%;
+    left: 50%;
+    transform: translate(-50%, 10px);
+    width: 80%;
+    color: #74394d;
+    font-size: clamp(9px, 1.5vw, 13px);
+    font-style: italic;
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: opacity 0.8s, transform 0.8s;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.stage.performing .performance-label,
+.stage:has(.dance-zone:hover) .performance-label {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* STEP 29: Magical stage glow */
+
+.stage.performing,
+.stage:has(.dance-zone:hover) {
+    box-shadow:
+        0 0 25px #e1b76c40,
+        0 0 60px #df8daa35,
+        inset 0 0 30px #fff3c650;
+}
+
+/* ==================================
+   FLOATING BALLET MUSIC BUTTON
+================================== */
+
+/* STEP 30: Music controls */
+
+#music-button {
+    position: fixed;
+    top: 22px;
+    right: 25px;
+    z-index: 99999;
+    background: #fff0f4;
+    color: #74394d;
+    border: 1px solid #d6ad85;
+    border-radius: 30px;
+    padding: 12px 20px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    cursor: pointer;
+    pointer-events: auto;
+    touch-action: manipulation;
+    box-shadow: 0 4px 15px #74394d15;
+    transition:
+        background 0.3s,
+        color 0.3s,
+        box-shadow 0.3s;
+}
+
+#music-button:hover {
+    background: #74394d;
+    color: #fff4f4;
+}
+
+#music-button:active {
+    transform: scale(0.97);
+}
+
+#music-button.playing {
+    background: #74394d;
+    color: #fff4f4;
+    animation: music-glow 3s infinite;
+}
+
+#music-button:focus-visible {
+    outline: 2px solid #b85c7b;
+    outline-offset: 4px;
+}
+
+@keyframes music-glow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 #df8daa30;
+    }
+
+    50% {
+        box-shadow: 0 0 0 6px #df8daa30;
+    }
+}
+
+/* Decorative elements cannot block clicks */
+
+.spotlight,
+.curtain,
+.sparkle,
+.music-note,
+.performance-label,
+.floor {
+    pointer-events: none;
+}
+
+/* STEP 31: Footer */
 
 footer {
     padding: 12px;
@@ -631,6 +1122,74 @@ footer span {
     font-style: italic;
 }
 
+/* Soundtrack attribution */
+
+footer .music-credit {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    color: #a76b7f;
+    margin-top: 15px;
+    opacity: 0.75;
+}
+
+.music-credit a {
+    color: #986176;
+    text-decoration: none;
+    border-bottom: 1px dotted #d6ad85;
+}
+
+.music-credit a:hover {
+    color: #74394d;
+}
+
+/* STEP 32: Mobile adjustments */
+
+@media (max-width: 600px) {
+    .eyebrow {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .stage {
+        height: 85vmin;
+        border-radius: 80px 80px 12px 12px;
+    }
+
+    .turkey {
+        width: 72vmin;
+        height: 72vmin;
+    }
+
+    .dance-zone {
+        width: 85%;
+    }
+
+    .sparkle {
+        font-size: 22px;
+    }
+
+    .music-note {
+        font-size: 22px;
+    }
+
+    .performance-label {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    footer p {
+        letter-spacing: 1.5px;
+    }
+
+    #music-button {
+        top: auto;
+        bottom: 15px;
+        right: 15px;
+        font-size: 11px;
+        padding: 10px 15px;
+    }
+}
+
 /* Accessibility: reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
@@ -638,4 +1197,9 @@ footer span {
         animation: none !important;
         transition: none !important;
     }
+
+    .music-note {
+        opacity: 0 !important;
+    }
 }
+
