@@ -1,0 +1,641 @@
+
+/* ==================================
+   THE NUTQUACKER
+   Ballerina Turkey CSS Challenge
+================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+body {
+    background: #fff4f4;
+    color: #74394d;
+    font-family: Georgia, serif;
+    text-align: center;
+}
+
+/* STEP 1: Website decorations */
+
+header {
+    padding: 22px 15px 12px;
+}
+
+.eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+h1 {
+    font-size: clamp(36px, 7vw, 70px);
+    font-weight: normal;
+    font-style: italic;
+    margin: 5px;
+}
+
+.subtitle {
+    font-size: 15px;
+    font-style: italic;
+    color: #a76b7f;
+    margin: 10px;
+}
+
+/* STEP 2: Ballet stage */
+
+.stage {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    height: min(65vmin, 580px);
+    margin: 10px auto;
+    overflow: hidden;
+    border: 2px solid #d6ad85;
+    border-radius: 160px 160px 12px 12px;
+    background: radial-gradient(
+        ellipse at center,
+        #fffaf2,
+        #f4d0da 75%
+    );
+}
+
+.floor {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 15%;
+    background: #e8bac0;
+    border-top: 2px solid #d49aa7;
+}
+
+.spotlight {
+    position: absolute;
+    width: 70%;
+    height: 100%;
+    left: 15%;
+    background: linear-gradient(
+        #fff9d950,
+        #ffffff85,
+        transparent
+    );
+    clip-path: polygon(
+        40% 0,
+        60% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+/* Theater curtains */
+
+.curtain {
+    position: absolute;
+    width: 16%;
+    height: 100%;
+    top: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        #76384e,
+        #a85972 25%,
+        #76384e 50%
+    );
+    z-index: 5;
+    border-bottom: 5px solid #dbb57e;
+}
+
+.left-curtain {
+    left: 0;
+    border-radius: 0 0 90% 0;
+}
+
+.right-curtain {
+    right: 0;
+    border-radius: 0 0 0 90%;
+}
+
+/* STEP 3: Original turkey container */
+
+.turkey {
+    --brown1: #c39479;
+    --brown2: #dbb69d;
+    --orange1: #eeb16b;
+    --orange2: #d69055;
+
+    --pink1: #f6c6d5;
+    --pink2: #df8daa;
+    --pink3: #b85c7b;
+    --cream: #fff0df;
+    --gold: #e1b76c;
+
+    width: 58vmin;
+    height: 58vmin;
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.5s;
+}
+
+.turkey div {
+    position: absolute;
+    box-sizing: border-box;
+}
+
+/* STEP 4: Redesigned pastel feathers */
+
+.tail {
+    width: 15%;
+    height: 52%;
+    left: 42.5%;
+    top: 5%;
+    border-radius: 70% 70% 30% 30%;
+    background: linear-gradient(
+        var(--pink1),
+        var(--pink2)
+    );
+    border: 1px solid #bd7c93;
+    transform-origin: bottom center;
+    transform: rotate(var(--angle));
+    z-index: 1;
+    animation: feather-sway 4s ease-in-out infinite;
+}
+
+.tail::after {
+    content: "";
+    position: absolute;
+    width: 2%;
+    height: 65%;
+    background: #ffffff80;
+    top: 12%;
+    left: 49%;
+    border-radius: 50%;
+}
+
+.tail:nth-child(1)  { --angle: -75deg; }
+.tail:nth-child(2)  { --angle: -60deg; }
+.tail:nth-child(3)  { --angle: -45deg; }
+.tail:nth-child(4)  { --angle: -30deg; }
+.tail:nth-child(5)  { --angle: -15deg; }
+.tail:nth-child(6)  { --angle: 0deg; }
+.tail:nth-child(7)  { --angle: 15deg; }
+.tail:nth-child(8)  { --angle: 30deg; }
+.tail:nth-child(9)  { --angle: 45deg; }
+.tail:nth-child(10) { --angle: 60deg; }
+.tail:nth-child(11) { --angle: 75deg; }
+
+.tail:nth-child(even) {
+    background: linear-gradient(
+        #fff3e4,
+        #edcfbd
+    );
+}
+
+/* STEP 5: Original body recolored and resized */
+
+.body {
+    width: 36%;
+    height: 38%;
+    background: var(--brown1);
+    border-radius: 48%;
+    top: 40%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    box-shadow: inset -8px -5px 0 #00000008;
+}
+
+/* STEP 6: Wings reshaped into ballet arms */
+
+.wing {
+    background: var(--brown2);
+    height: 13%;
+    width: 28%;
+    border-radius: 80% 30% 50% 70%;
+    transform-origin: right center;
+    top: 43%;
+    left: 11%;
+    transform: rotate(18deg);
+    z-index: 4;
+    border-bottom: 2px solid #bb927d;
+}
+
+.wing + .wing {
+    left: auto;
+    right: 11%;
+    transform-origin: left center;
+    transform: scaleY(-1) rotate(18deg);
+}
+
+/* STEP 7: Original turkey legs */
+
+.leg {
+    width: 4.5%;
+    height: 19%;
+    top: 70%;
+    left: 43%;
+    background: var(--orange1);
+    border-radius: 30px;
+    transform: rotate(8deg);
+    z-index: 2;
+}
+
+.leg + .leg {
+    left: 53%;
+    transform: rotate(-8deg);
+}
+
+/* STEP 8: Turkey head and neck */
+
+.head {
+    width: 21%;
+    height: 21%;
+    border-radius: 50%;
+    background: var(--brown2);
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 8;
+}
+
+.head::before {
+    content: "";
+    position: absolute;
+    width: 40%;
+    height: 115%;
+    background: var(--brown2);
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0 0 100% 100%;
+}
+
+/* STEP 9: Facial features */
+
+.eye {
+    width: 10%;
+    height: 12%;
+    background: #422b32;
+    color: #422b32;
+    border-radius: 50%;
+    top: 39%;
+    left: 25%;
+    box-shadow: 5.5vmin 0;
+    z-index: 2;
+}
+
+.eye::before {
+    content: "";
+    position: absolute;
+    width: 35%;
+    height: 35%;
+    background: white;
+    border-radius: 50%;
+    top: 15%;
+    left: 15%;
+}
+
+.beak {
+    width: 27%;
+    height: 20%;
+    background: var(--orange1);
+    top: 52%;
+    left: 37%;
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+    z-index: 3;
+}
+
+.red {
+    width: 12%;
+    height: 26%;
+    background: #bb6679;
+    border-radius: 30% 30% 80% 80%;
+    top: 58%;
+    left: 58%;
+    transform: rotate(-18deg);
+}
+
+.blush {
+    width: 18%;
+    height: 9%;
+    background: #e998a5;
+    border-radius: 50%;
+    top: 57%;
+    left: 10%;
+    box-shadow: 7.5vmin 0 #e998a5;
+    opacity: 0.8;
+}
+
+/* STEP 10: NEW ACCESSORY - Ballet leotard */
+
+.leotard {
+    width: 34%;
+    height: 29%;
+    background: linear-gradient(
+        #ffdce8,
+        #eea1bd
+    );
+    top: 45%;
+    left: 33%;
+    border-radius: 15% 15% 45% 45%;
+    clip-path: polygon(
+        0 0,
+        25% 0,
+        50% 25%,
+        75% 0,
+        100% 0,
+        90% 100%,
+        10% 100%
+    );
+    z-index: 5;
+}
+
+/* STEP 11: NEW ACCESSORY - Layered tutu */
+
+.tutu-back {
+    width: 58%;
+    height: 18%;
+    top: 60%;
+    left: 21%;
+    background: #dc87a7;
+    border-radius: 20% 20% 50% 50%;
+    clip-path: polygon(
+        28% 0,
+        72% 0,
+        100% 80%,
+        90% 95%,
+        75% 85%,
+        60% 100%,
+        45% 90%,
+        30% 100%,
+        15% 85%,
+        0 80%
+    );
+    z-index: 6;
+}
+
+.tutu-front {
+    width: 57%;
+    height: 15%;
+    top: 59%;
+    left: 21.5%;
+    background: repeating-conic-gradient(
+        from 0deg at 50% -30%,
+        #ffd5e5 0deg 8deg,
+        #f0afc9 8deg 12deg
+    );
+    clip-path: polygon(
+        28% 0,
+        72% 0,
+        100% 85%,
+        85% 95%,
+        70% 85%,
+        50% 100%,
+        30% 85%,
+        15% 95%,
+        0 85%
+    );
+    z-index: 7;
+}
+
+.waistband {
+    width: 27%;
+    height: 3%;
+    top: 58%;
+    left: 36.5%;
+    background: var(--pink3);
+    border-radius: 20px;
+    z-index: 8;
+}
+
+/* STEP 12: NEW ACCESSORY - Waist bow */
+
+.bow {
+    width: 15%;
+    height: 8%;
+    top: 55%;
+    left: 42.5%;
+    z-index: 9;
+}
+
+.bow-left,
+.bow-right {
+    width: 50%;
+    height: 80%;
+    background: #ba5c7e;
+    border: 1px solid #984461;
+}
+
+.bow-left {
+    left: 0;
+    border-radius: 30% 65% 65% 30%;
+    transform: rotate(15deg);
+}
+
+.bow-right {
+    right: 0;
+    border-radius: 65% 30% 30% 65%;
+    transform: rotate(-15deg);
+}
+
+.bow-center {
+    width: 22%;
+    height: 45%;
+    top: 18%;
+    left: 39%;
+    background: #df92ad;
+    border-radius: 30%;
+}
+
+/* STEP 13: Original hat reshaped into a tiara */
+
+.hat-top {
+    width: 19%;
+    height: 11%;
+    top: 9%;
+    left: 40.5%;
+    background: linear-gradient(
+        #fff0b3,
+        #d2a356
+    );
+    clip-path: polygon(
+        0 30%,
+        25% 60%,
+        50% 0,
+        75% 60%,
+        100% 30%,
+        85% 100%,
+        15% 100%
+    );
+    z-index: 10;
+}
+
+.hat-bottom {
+    width: 17%;
+    height: 2.5%;
+    top: 19%;
+    left: 41.5%;
+    background: #d6aa62;
+    border-radius: 30px;
+    z-index: 10;
+}
+
+.gem {
+    width: 4%;
+    height: 4%;
+    top: 13%;
+    left: 48%;
+    background: #e693b4;
+    border: 2px solid #fff1ca;
+    transform: rotate(45deg);
+    border-radius: 15%;
+    z-index: 11;
+}
+
+/* STEP 14: NEW ACCESSORY - Ballet slippers */
+
+.slipper {
+    width: 6%;
+    height: 10%;
+    top: 82%;
+    background: linear-gradient(
+        #edafc7,
+        #c57292
+    );
+    border-radius: 30% 30% 45% 45%;
+    border-bottom: 3px solid #a95576;
+    z-index: 5;
+}
+
+.slipper-left {
+    left: 41%;
+    transform: rotate(8deg);
+}
+
+.slipper-right {
+    left: 53%;
+    transform: rotate(-8deg);
+}
+
+/* Crisscross ballet ribbons */
+
+.slipper::before,
+.slipper::after {
+    content: "";
+    position: absolute;
+    width: 28%;
+    height: 100%;
+    background: #d98da9;
+    top: -75%;
+    left: 36%;
+    border-radius: 4px;
+}
+
+.slipper::before {
+    transform: rotate(35deg);
+}
+
+.slipper::after {
+    transform: rotate(-35deg);
+}
+
+/* STEP 15: Animated sparkles */
+
+.sparkle {
+    position: absolute;
+    color: #c99b55;
+    font-size: 35px;
+    animation: twinkle 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.sparkle-one {
+    top: 25%;
+    left: 25%;
+}
+
+.sparkle-two {
+    top: 16%;
+    right: 25%;
+    animation-delay: 0.5s;
+}
+
+.sparkle-three {
+    bottom: 23%;
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.sparkle-four {
+    bottom: 24%;
+    right: 20%;
+    animation-delay: 1.5s;
+}
+
+/* STEP 16: Animations and hover effects */
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes feather-sway {
+    0%, 100% {
+        transform: rotate(var(--angle));
+    }
+
+    50% {
+        transform: rotate(
+            calc(var(--angle) + 3deg)
+        );
+    }
+}
+
+.turkey:hover {
+    transform: translate(-50%, -50%) scale(1.06);
+}
+
+.turkey:hover .tutu-front {
+    filter: brightness(1.12);
+}
+
+/* STEP 17: Footer */
+
+footer {
+    padding: 12px;
+    color: #986176;
+}
+
+footer p {
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+footer span {
+    font-size: 12px;
+    font-style: italic;
+}
+
+/* Accessibility: reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
